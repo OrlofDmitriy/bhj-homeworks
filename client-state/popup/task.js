@@ -4,10 +4,11 @@ const modal = document.querySelectorAll('.modal');
 window.addEventListener('load', () => {
     modal.forEach((modal) => {
         modal.classList.add('modal_active');
+        if (getCookie('modal') === 'closet') {
+            modal.classList.remove('modal_active');
+        }
     });
-    if (getCookie('modal') === 'closet') {
-        modal.classList.remove('modal_active');
-    }
+    
 })
 
 btnCloseModal.addEventListener('click', () => {
@@ -21,9 +22,16 @@ function setCookie(name, value) {
     document.cookie = name + '=' + value;
 }
 
+// function getCookie(name) {
+//     const value = `; ${document.cookie}`;
+//     let parts = value.split(`; ${name}=`);
+//     if (parts.length === 2) {
+//         return parts.pop();
+//     }
+// }
+
 function getCookie(name) {
-    const value = `; ${document.cookie} `;
-    let parts = value.split(`; ${name}=`);
+    let parts = `; ${document.cookie}`.split(`; ${name}=`);
     if (parts.length === 2) {
         return parts.pop();
     }

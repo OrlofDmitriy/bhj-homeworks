@@ -18,9 +18,15 @@ form.addEventListener('submit', event => {
     }
 })
 
-window.addEventListener('load', () => {
-    localStorage.userId ? showWelcome() : false;
-})
+// window.addEventListener('load', () => {
+//     localStorage.userId ? showWelcome() : false;
+// })
+
+window.addEventListener('load', function () {
+    if (localStorage.getItem('userId')) {
+        showWelcome();
+    }
+});
 
 function showWelcome() {
     const signal = document.querySelector('.signin');
