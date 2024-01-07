@@ -1,23 +1,22 @@
-(() => {
-    const windowOne = document.getElementById("modal_main");
-    windowOne.classList.add("modal_active");
-})();
+const popups = document.querySelectorAll('.modal');
+const buttonSuccess = document.querySelector('.show-success');
+const popupSuccess = document.querySelector('.btn_success');
 
-(() => {
-    const windowOne = document.getElementsByClassName("modal__close");
-    for (let i = 0; i < windowOne.length; i++) {
-        windowOne[i].addEventListener("click", function () {
-            this.parentElement.parentElement.classList.remove("modal_active");
-        });
-    }
-})();
+(function() {
+    popups.forEach(popup => {
+        if (!popup.querySelector('.btn_success')) {
+            popup.className = 'modal modal_active';
+        }
+        popup.querySelector('.modal__close').onclick = closePopup;
+        popup.querySelector('.show-success').onclick = showSuccess;
+    })
+}());
 
-(() => {
-    const windowOne = document.getElementsByClassName("show-success");
-    for (let i = 0; i < windowOne.length; i++) {
-        windowOne[i].addEventListener("click", function () {
-            const windowTwo = document.getElementById("modal_success");
-            windowTwo.classList.add("modal_active");
-        });
-    }
-})();
+function closePopup() {
+    this.closest('.modal').className = 'modal';
+}
+
+function showSuccess() {
+    buttonSuccess.closest('.modal').className = 'modal';
+    popupSuccess.closest('.modal').className = 'modal modal_active';
+}
